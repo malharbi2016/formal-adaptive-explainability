@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: Design and Verification of Adaptive Explainability Policies in Service Robots under Uncertainty
+message: If you use this repository, please cite the associated paper.
+type: software
+
+authors:
+  - family-names: Alharbi
+    given-names: Mohammed
+    affiliation: University of Jeddah
+
+repository-code: https://github.com/malharbi2016/adaptive-explainability-prism
+
+license: Apache-2.0
+
+keywords:
+  - Explainable AI
+  - Human-Robot Interaction
+  - PRISM-games
+  - Stochastic Multi-Player Games
+  - Formal Verification
+  - Adaptive Explainability
+  - Service Robots
