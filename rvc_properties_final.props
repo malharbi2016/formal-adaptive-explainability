@@ -1,0 +1,16 @@
+// =====================================================
+// Verification Properties for Adaptive Explainability
+// PRISM-games SMG Verification Queries
+// =====================================================
+
+// Expected utility until completion
+R{"utility"}max=? [ F "done" ]
+
+// Expected explanation cost until completion
+R{"cost"}min=? [ F "done" ]
+
+// Maximum probability of eventually obtaining a helpful response
+Pmax=? [ F Resp=1 ]
+
+// Maximum probability of eventually obtaining satisfaction
+Pmax=? [ F Satisfy=true ]

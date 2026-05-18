@@ -1,0 +1,73 @@
+smg
+
+const double w_info;
+const double p_sat_comp = 0.8;
+const double p_sat_min  = 0.5;
+const double p_help     = 0.7;
+const double c_exp      = 0.2;
+
+global turn   : [0..2] init 0;
+global hstage : [0..1] init 0;
+global done   : bool init false;
+
+label "done" = done;
+
+module RVC
+  exp : [0..1] init 0;
+
+  [Explain] (turn=0) & (!done) ->
+      w_info:(exp'=1) & (turn'=1) & (hstage'=0)
+    + (1-w_info):(exp'=0) & (turn'=1) & (hstage'=0);
+endmodule
+
+module HUMAN
+  Satisfy : bool init false;
+  Resp    : [0..1] init 0;
+
+  [Assess] (turn=1) & (hstage=0) & (exp=1) & (!done) ->
+      p_sat_comp:(Satisfy'=true) & (hstage'=1)
+    + (1-p_sat_comp):(Satisfy'=false) & (hstage'=1);
+
+  [Assess] (turn=1) & (hstage=0) & (exp=0) & (!done) ->
+      p_sat_min:(Satisfy'=true) & (hstage'=1)
+    + (1-p_sat_min):(Satisfy'=false) & (hstage'=1);
+
+  [Respond] (turn=1) & (hstage=1) & (Satisfy=true) & (!done) ->
+      p_help:(Resp'=1) & (turn'=2) & (hstage'=0)
+    + (1-p_help):(Resp'=0) & (turn'=2) & (hstage'=0);
+
+  [Respond] (turn=1) & (hstage=1) & (Satisfy=false) & (!done) ->
+      0.3:(Resp'=1) & (turn'=2) & (hstage'=0)
+    + 0.7:(Resp'=0) & (turn'=2) & (hstage'=0);
+endmodule
+
+module ENV
+  step : [0..10] init 0;
+
+  [Step] (turn=2) & (step<10) & (!done) ->
+      (step'=step+1) & (turn'=0);
+
+  [Finish] (turn=2) & (step=10) & (!done) ->
+      (done'=true);
+endmodule
+
+player RVC
+  [Explain]
+endplayer
+
+player HUMAN
+  [Assess], [Respond]
+endplayer
+
+player ENVIRONMENT
+  [Step], [Finish]
+endplayer
+
+rewards "utility"
+  [Respond] Satisfy=true  : 1;
+  [Respond] Satisfy=false : 0;
+endrewards
+
+rewards "cost"
+  [Explain] exp=1 : c_exp;
+endrewards
