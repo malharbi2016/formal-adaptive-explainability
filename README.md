@@ -2,7 +2,7 @@
 
 This repository contains the PRISM-games models and verification artifacts used in the study:
 
-> **“Design and Verification of Adaptive Explainability Policies in Service Robots under Uncertainty”**
+**“Design and Verification of Adaptive Explainability Policies in Service Robots under Uncertainty”**
 
 The repository supports reproducibility, transparency, and formal verification of preference-parameterized adaptive explainability policies using stochastic multi-player games (SMGs).
 
@@ -12,7 +12,7 @@ The implementation evaluates explanation-quantity policies in a robot vacuum cle
 
 # Repository Structure
 
-## `models/`
+## `Models`
 
 Contains the PRISM-games SMG models:
 
@@ -38,7 +38,7 @@ Contains the PRISM-games SMG models:
 
 The two models share the same human-response structure, satisfaction parameters, explanation-cost parameter, ten-round interaction horizon, reward structures, and terminal condition.
 
-## `properties/`
+## `Properties`
 
 Contains the PRISM-games verification properties:
 
