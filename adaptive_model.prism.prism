@@ -1,13 +1,13 @@
 smg
 
 const double w_info;
-const double p_sat_comp = 0.8;
-const double p_sat_min  = 0.5;
-const double p_help     = 0.7;
-const double c_exp      = 0.2;
+const double p_sat_comp;
+const double p_sat_min;
+const double p_help;
+const double c_exp;
 
 global turn   : [0..2] init 0;
-global hstage : [0..1] init 0;
+global hstage : [0..2] init 0;
 global done   : bool init false;
 
 label "done" = done;
@@ -33,21 +33,27 @@ module HUMAN
     + (1-p_sat_min):(Satisfy'=false) & (hstage'=1);
 
   [Respond] (turn=1) & (hstage=1) & (Satisfy=true) & (!done) ->
-      p_help:(Resp'=1) & (turn'=2) & (hstage'=0)
-    + (1-p_help):(Resp'=0) & (turn'=2) & (hstage'=0);
+      p_help:(Resp'=1) & (hstage'=2)
+    + (1-p_help):(Resp'=0) & (hstage'=2);
 
   [Respond] (turn=1) & (hstage=1) & (Satisfy=false) & (!done) ->
-      0.3:(Resp'=1) & (turn'=2) & (hstage'=0)
-    + 0.7:(Resp'=0) & (turn'=2) & (hstage'=0);
+      0.3:(Resp'=1) & (hstage'=2)
+    + 0.7:(Resp'=0) & (hstage'=2);
+
+  [Record] (turn=1) & (hstage=2) & (!done) ->
+      (turn'=2) & (hstage'=0);
 endmodule
 
 module ENV
-  step : [0..10] init 0;
+  step : [0..9] init 0;
 
-  [Step] (turn=2) & (step<10) & (!done) ->
+  [Step] (turn=2) & (step<9) & (!done) ->
       (step'=step+1) & (turn'=0);
 
-  [Finish] (turn=2) & (step=10) & (!done) ->
+  [Finish] (turn=2) & (step=9) & (!done) ->
+      (done'=true);
+
+  [End] done ->
       (done'=true);
 endmodule
 
@@ -56,18 +62,33 @@ player RVC
 endplayer
 
 player HUMAN
-  [Assess], [Respond]
+  [Assess], [Respond], [Record]
 endplayer
 
 player ENVIRONMENT
-  [Step], [Finish]
+  [Step], [Finish], [End]
 endplayer
 
 rewards "utility"
-  [Respond] Satisfy=true  : 1;
-  [Respond] Satisfy=false : 0;
+  [Record] Satisfy=true : 1;
 endrewards
 
 rewards "cost"
-  [Explain] exp=1 : c_exp;
+  [Record] exp=1 : c_exp;
+endrewards
+
+rewards "helpful_count"
+  [Record] Resp=1 : 1;
+endrewards
+
+rewards "satisfaction_count"
+  [Record] Satisfy=true : 1;
+endrewards
+
+rewards "comprehensive_count"
+  [Record] exp=1 : 1;
+endrewards
+
+rewards "minimal_count"
+  [Record] exp=0 : 1;
 endrewards
