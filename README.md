@@ -104,8 +104,8 @@ All reward properties accumulate values until the model reaches the terminal sta
 
 # Requirements
 
-* PRISM-games 3.x
-* Java 8+
+* PRISM-games 3.0 (Current release as of 2026: PRISM-games 3.2.4)
+* Java 11+
 
 PRISM-games can be obtained from:
 
