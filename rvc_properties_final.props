@@ -1,16 +1,23 @@
-// =====================================================
-// Verification Properties for Adaptive Explainability
-// PRISM-games SMG Verification Queries
-// =====================================================
-
-// Expected utility until completion
+// Expected number of satisfied interaction rounds
 R{"utility"}max=? [ F "done" ]
 
-// Expected explanation cost until completion
+// Expected cumulative explanation cost
 R{"cost"}min=? [ F "done" ]
 
-// Maximum probability of eventually obtaining a helpful response
-Pmax=? [ F Resp=1 ]
+// Expected number of helpful responses
+R{"helpful_count"}max=? [ F "done" ]
 
-// Maximum probability of eventually obtaining satisfaction
-Pmax=? [ F Satisfy=true ]
+// Expected number of satisfied rounds
+R{"satisfaction_count"}max=? [ F "done" ]
+
+// Expected number of comprehensive explanations
+R{"comprehensive_count"}max=? [ F "done" ]
+
+// Expected number of minimal explanations
+R{"minimal_count"}max=? [ F "done" ]
+
+// Probability that the final response is helpful
+Pmax=? [ F ("done" & Resp=1) ]
+
+// Probability that the user is satisfied in the final round
+Pmax=? [ F ("done" & Satisfy=true) ]
