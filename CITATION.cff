@@ -1,22 +1,41 @@
 cff-version: 1.2.0
-title: Design and Verification of Adaptive Explainability Policies in Service Robots under Uncertainty
-message: If you use this repository, please cite the associated paper.
+
+message: "If you use these PRISM-games models or verification artifacts, please cite this software record."
+
+title: "Design and Verification of Adaptive Explainability Policies in Service Robots under Uncertainty: PRISM-games Models and Verification Artifacts"
+
 type: software
 
 authors:
-  - family-names: Alharbi
-    given-names: Mohammed
-    affiliation: University of Jeddah
+  - family-names: "Alharbi"
+    given-names: "Mohammed Naji"
+    affiliation: "College of Computer Science and Engineering, University of Jeddah"
 
-repository-code: https://github.com/malharbi2016/formal-adaptive-explainability
+doi: 10.5281/zenodo.20273873
+
+repository-code: "https://github.com/malharbi2016/formal-adaptive-explainability"
 
 license: Apache-2.0
 
+abstract: >-
+  PRISM-games models and verification artifacts supporting a
+  preference-parameterized adaptive explainability framework for service
+  robots under uncertainty. The implementation includes an adaptive model
+  in which the continuous information-preference parameter w_info controls
+  the probability of selecting minimal or comprehensive explanations, and
+  a non-adaptive randomized baseline using equal explanation-selection
+  probabilities. The artifacts support formal evaluation of expected
+  cumulative satisfaction-based utility, explanation cost, helpful-response
+  probability, and satisfaction probability.
+
 keywords:
-  - Explainable AI
-  - Human-Robot Interaction
-  - PRISM-games
-  - Stochastic Multi-Player Games
-  - Formal Verification
-  - Adaptive Explainability
-  - Service Robots
+  - "Probabilistic Model Checking"
+  - "PRISM-games"
+  - "Adaptive Explainability"
+  - "Explainable Robotics"
+  - "Stochastic Multi-Player Games"
+  - "Service Robots"
+  - "User-Preference Modeling"
+  - "Formal Verification"
+  - "Human-Robot Interaction"
+  - "Reproducibility"
