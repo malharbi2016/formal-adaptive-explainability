@@ -236,7 +236,7 @@ These artifacts support independent replication and allow the illustrative param
 
 If you use these models or verification artifacts, please cite the associated paper:
 
-> Mohammed Naji Alharbi, “Design and Verification of Adaptive Explainability Policies in Service Robots under Uncertainty.”
+Mohammed Naji Alharbi, “Design and Verification of Adaptive Explainability Policies in Service Robots under Uncertainty.”
 
 ---
 
