@@ -1,0 +1,15 @@
+R{"utility"}max=? [ F "done" ]
+
+R{"cost"}min=? [ F "done" ]
+
+R{"helpful_count"}max=? [ F "done" ]
+
+R{"satisfaction_count"}max=? [ F "done" ]
+
+R{"comprehensive_count"}max=? [ F "done" ]
+
+R{"minimal_count"}max=? [ F "done" ]
+
+Pmax=? [ F ("done" & Resp=1) ]
+
+Pmax=? [ F ("done" & Satisfy=true) ]
