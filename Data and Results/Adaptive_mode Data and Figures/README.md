@@ -1,1 +1,1 @@
-Adaptive_mode Data and Figures
+Adaptive_model raw PRISM output and Figures
